@@ -1,1 +1,205 @@
+import random
+import time
+import tracemalloc
 
+# -------------------------------
+# 1. Bubble Sort
+# -------------------------------
+def bubble_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        swapped = False
+
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+
+        if not swapped:
+            break
+
+    return arr
+
+
+# -------------------------------
+# 2. Selection Sort
+# -------------------------------
+def selection_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        min_index = i
+
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+
+        arr[i], arr[min_index] = arr[min_index], arr[i]
+
+    return arr
+
+
+# -------------------------------
+# 3. Insertion Sort
+# -------------------------------
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key
+
+    return arr
+
+
+# -------------------------------
+# 4. Merge Sort
+# -------------------------------
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    result = []
+    i = 0
+    j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
+
+
+# -------------------------------
+# 5. Quick Sort
+# -------------------------------
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    pivot = arr[len(arr) // 2]
+
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+
+    return quick_sort(left) + middle + quick_sort(right)
+
+
+# Dictionary of algorithms
+algorithms = {
+    "Bubble Sort": bubble_sort,
+    "Selection Sort": selection_sort,
+    "Insertion Sort": insertion_sort,
+    "Merge Sort": merge_sort,
+    "Quick Sort": quick_sort
+}
+
+
+# ------------------------------------------------
+# Generate different types of input
+# ------------------------------------------------
+def generate_data(size, condition):
+    if condition == "Sorted":
+        return list(range(size))
+    elif condition == "Reverse-Sorted":
+        return list(range(size, 0, -1))
+    elif condition == "Random":
+        return random.sample(range(size * 2), size)
+
+
+# ------------------------------------------------
+# Measure execution time and memory
+# ------------------------------------------------
+def measure_algorithm(sort_function, data):
+    # Make a copy so every algorithm receives
+    # the same input
+    arr = data.copy()
+
+    tracemalloc.start()
+
+    start_time = time.perf_counter()
+
+    result = sort_function(arr)
+
+    end_time = time.perf_counter()
+
+    current, peak = tracemalloc.get_traced_memory()
+
+    tracemalloc.stop()
+
+    execution_time = end_time - start_time
+
+    memory_usage = peak / 1024   # Convert bytes to KB
+
+    return execution_time, memory_usage
+
+
+# ------------------------------------------------
+# Main Experimental Analysis
+# ------------------------------------------------
+input_sizes = [100, 500, 1000, 2000, 5000]
+
+conditions = [
+    "Sorted",
+    "Reverse-Sorted",
+    "Random"
+]
+
+print("=" * 80)
+print("EXPERIMENTAL ANALYSIS OF SORTING ALGORITHMS")
+print("=" * 80)
+
+print("\nExecution Time is measured in seconds.")
+print("Memory Usage is measured in KB.\n")
+
+for condition in conditions:
+    print("\n" + "=" * 80)
+    print("INPUT CONDITION:", condition)
+    print("=" * 80)
+
+    for size in input_sizes:
+        print("\nInput Size:", size)
+
+        data = generate_data(size, condition)
+
+        for name, algorithm in algorithms.items():
+            try:
+                time_taken, memory_used = measure_algorithm(
+                    algorithm,
+                    data
+                )
+
+                print(
+                    f"{name:18} | "
+                    f"Time: {time_taken:.6f} sec | "
+                    f"Memory: {memory_used:.2f} KB"
+                )
+
+            except RecursionError:
+                print(
+                    f"{name:18} | "
+                    f"Recursion limit exceeded"
+                )
+
+
+print("\n" + "=" * 80)
+print("EXPERIMENT COMPLETED")
+print("=" * 80)
