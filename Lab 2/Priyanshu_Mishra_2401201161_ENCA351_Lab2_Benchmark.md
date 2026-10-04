@@ -11,7 +11,7 @@
 
 <table class="front">
 <tr>
-<td><strong>Submitted by:</strong><br>Name: Aditya Shibu<br>Roll Number: 2401201047<br>Course: BCA (AI & DS) - Section B</td>
+<td><strong>Submitted by:</strong><br>Name: Priyanshu Mishra <br>Roll Number: 2401201161 <br>Course: BCA (AI & DS) - Section A</td>
 <td style="text-align: right;"><strong>Submitted To:</strong><br>Dr. Aarti<br>Faculty, SOET</td>
 </tr>
 </table>
