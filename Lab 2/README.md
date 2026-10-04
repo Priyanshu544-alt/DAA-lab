@@ -1,9 +1,9 @@
 .
 ├── README.md
-├── app.py                  # Streamlit interactive app
-├── search_analysis.py      # Q2: Linear + Binary Search
-├── code_benchmark.py       # Q3: loop + factorial patterns
-├── benchmark_engine.py     # Q4: automated engine (any func, any sizes)
+├── app.py                                # Streamlit interactive app
+├── search_analysis.py                          # Q2: Linear + Binary Search
+├── code_benchmark.py                   # Q3: loop + factorial patterns
+├── benchmark_engine.py                 # Q4: automated engine (any func, any sizes)
 ├── run_full_sweep.py       # brief-size sweep -> data/sweep_full.csv
 ├── visualize.py            # Q6: time + memory charts -> graphs/
 ├── project_notebook.ipynb  # demo notebook (executes clean)
