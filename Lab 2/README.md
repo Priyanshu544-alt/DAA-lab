@@ -8,9 +8,8 @@
 ├── visualize.py            # Q6: time + memory charts -> graphs/
 ├── project_notebook.ipynb  # demo notebook (executes clean)
 ├── requirements.txt
-├── krmu_logo.png           # report front page
-├── Aditya_Shibu_2401201047_ENCA351_Lab2_Benchmark.md  # report source
-├── Aditya_Shibu_2401201047_ENCA351_Lab2_Benchmark.pdf # report (11 pp)
+├── Priyanshu_Mishra_2401201161_ENCA351_Lab2_Benchmark.md  # report source
+├── Priyanshu_Mishra_2401201161_ENCA351_Lab2_Benchmark.pdf # report (11 pp)
 ├── graphs/                 # sweep_time.png, sweep_memory.png
 ├── data/                   # sweep_full.csv (30 rows)
 └── screenshots/            # terminal evidence
